@@ -47,3 +47,17 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+
+# Base de datos del caso
+data/
+DATA.xlsx
+
+# Archivos temporales de RStudio
+.Rhistory
+.RData
+.Rproj.user/
+
+# Resultados generados localmente
+resultados/
+
