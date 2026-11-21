@@ -154,3 +154,18 @@ datos %>%
     Maximo = max(Dias_Sin_Login),
     .groups = "drop"
   )
+
+# --------------------------------------------------
+# OBSERVACIONES DEL ANALISIS DESCRIPTIVO
+# --------------------------------------------------
+
+# La base contiene 6347 registros de clientes.
+# Se identificaron 1510 valores negativos en
+# la variable Dias_Sin_Login.
+#
+# La hoja Title Page del archivo original no
+# proporciona una explicacion de estos valores.
+#
+# Por esta razon, los resultados asociados con
+# esta variable deben interpretarse con precaucion.
+# No se modificaron los valores originales.
