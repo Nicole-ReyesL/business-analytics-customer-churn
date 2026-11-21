@@ -72,3 +72,85 @@ ggplot(tabla_churn,
   ) +
   theme_minimal()
 
+resumen_edad <- datos %>%
+  group_by(Churn) %>%
+  summarise(
+    Clientes = n(),
+    Promedio = mean(Edad),
+    Mediana = median(Edad),
+    Minimo = min(Edad),
+    Maximo = max(Edad)
+  )
+print(resumen_edad)
+
+ggplot(datos, aes(x = factor(Churn), y = Edad)) +
+  geom_boxplot(fill = "steelblue") +
+  labs(
+    title = "Antiguedad de clientes segun abandono",
+    x = "Churn (0 = Permanece, 1 = Abandona)",
+    y = "Antiguedad del cliente (meses)"
+  ) +
+  theme_minimal()
+
+resumen_comportamiento <- datos %>%
+  group_by(Churn) %>%
+  summarise(
+    Clientes = n(),
+    CHI_Promedio = mean(CHI),
+    Soporte_Promedio = mean(Soporte),
+    Dias_Sin_Login_Promedio = mean(Dias_Sin_Login)
+  )
+
+print(resumen_comportamiento)
+
+ggplot(datos, aes(x = factor(Churn), y = CHI)) +
+  geom_boxplot(fill = "steelblue") +
+  labs(
+    title = "Indicador CHI segun abandono",
+    x = "Churn (0 = Permanece, 1 = Abandona)",
+    y = "CHI"
+  ) +
+  theme_minimal()
+
+ggplot(datos, aes(x = factor(Churn), y = Soporte)) +
+  geom_boxplot(fill = "steelblue") +
+  labs(
+    title = "Casos de soporte segun abandono",
+    x = "Churn (0 = Permanece, 1 = Abandona)",
+    y = "Casos de soporte"
+  ) +
+  theme_minimal()
+
+ggplot(datos, aes(x = factor(Churn), y = Dias_Sin_Login)) +
+  geom_boxplot(fill = "steelblue") +
+  labs(
+    title = "Dias sin iniciar sesion segun abandono",
+    x = "Churn (0 = Permanece, 1 = Abandona)",
+    y = "Dias sin iniciar sesion"
+  ) +
+  theme_minimal()
+
+summary(datos$Dias_Sin_Login)
+
+sum(datos$Dias_Sin_Login < 0)
+
+resumen_comportamiento %>%
+  select(Churn, Dias_Sin_Login_Promedio)
+
+datos %>%
+  group_by(Churn) %>%
+  summarise(
+    Total_Clientes = n(),
+    Dias_Negativos = sum(Dias_Sin_Login < 0),
+    Porcentaje_Negativos = mean(Dias_Sin_Login < 0) * 100,
+    .groups = "drop"
+  )
+
+datos %>%
+  group_by(Churn) %>%
+  summarise(
+    Minimo = min(Dias_Sin_Login),
+    Mediana = median(Dias_Sin_Login),
+    Maximo = max(Dias_Sin_Login),
+    .groups = "drop"
+  )
